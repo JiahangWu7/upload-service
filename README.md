@@ -45,15 +45,18 @@ Later on, we can add OCR and recognition step by step without breaking the exist
    ```bash
    python3 -m venv .venv
    source .venv/bin/activate   # macOS/Linux
-   # .venv\Scripts\Activate.ps1  # Windows PowerShell```
+   # .venv\Scripts\Activate.ps1  # Windows PowerShell
+   ``` 
 
 2. Install dependencies
   ```bash
-  pip install -r requirements.txt```
+  pip install -r requirements.txt
+  ``` 
 
 3. Start the service
   ```bash
-  uvicorn app.main:app --reload --port 8000```
+  uvicorn app.main:app --reload --port 8000
+  ``` 
 
 ---
 
@@ -61,14 +64,17 @@ Later on, we can add OCR and recognition step by step without breaking the exist
 
 1. Check health
    ```bash
-   curl http://localhost:8000/health```
+   curl http://localhost:8000/health
+   ``` 
 
 
 2. Upload an image
   ```bash
-  curl -F "file=@photo.jpg" http://localhost:8000/upload/image```
+  curl -F "file=@photo.jpg" http://localhost:8000/upload/image
+  ``` 
 
 
 3. Upload a file
   ```bash
-  curl -F "file=@doc.pdf" http://localhost:8000/upload/file```
+  curl -F "file=@doc.pdf" http://localhost:8000/upload/file
+  ``` 
