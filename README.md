@@ -26,7 +26,6 @@ This makes it easy for the main backend to save the info into a database, or for
 ## Why it’s useful
 
 At this stage there’s **no extra processing** (so no OCR, no text extraction, no image recognition yet).  
-But that’s fine, because the important thing now is that the **upload flow works end-to-end**.  
 The main code can already call this service and get structured results.  
 Later on, we can add OCR and recognition step by step without breaking the existing APIs.
 
