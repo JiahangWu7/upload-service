@@ -1,37 +1,73 @@
-# Upload Service 
+# Upload Service
+
+This is a small service I built with **FastAPI**.  
+Right now it’s pretty basic, but it already works and can be used by the main backend and the frontend.
 
 ---
 
-## What This Service Does
+## What it does
 
-- ✅ You can upload a **photo** (jpg / jpeg / png / webp).  
-- ✅ You can upload a **file** (txt / pdf / docx / xlsx).  
-- ✅ It will store them in a local folder (`storage/`).  
-- ✅ It gives you back a JSON response with info (id, filename, size, etc).  
-- ❌ It does **NOT** analyze the files yet (no OCR, no text extraction). That will be the **next step**.
+- It has two endpoints:  
+  - `/upload/image` → for images  
+  - `/upload/file` → for documents  
+- Both endpoints check the file type (there is a whitelist) and limit the size to **20 MB**.  
+- Uploaded files are saved under the local `storage/` folder, in different sub-directories depending on type.  
+- The API returns a JSON response that includes:
+  - `id`  
+  - `filename`  
+  - `stored_path`  
+  - `mime_type`  
+  - `size_bytes`
 
-Basically: **Frontend button → Main backend API → This service → JSON response** 
-
----
-
-## API Endpoints
-
-### `GET /health`
-Just a simple check to see if the service is running.  
-Returns status, supported types, and size limit.
+This makes it easy for the main backend to save the info into a database, or for the frontend to just show it to users.
 
 ---
 
-### `POST /upload/image`
-Upload an image. Supports: **jpg, jpeg, png, webp**.  
-Returns:
-```json
-{
-  "id": "abc123",
-  "kind": "image",
-  "filename": "photo.jpg",
-  "stored_path": "storage/images/abc123.jpg",
-  "size_bytes": 12345,
-  "mime_type": "image/jpeg",
-  "message": "uploaded"
-}
+## Why it’s useful
+
+At this stage there’s **no extra processing** (so no OCR, no text extraction, no image recognition yet).  
+But that’s fine, because the important thing now is that the **upload flow works end-to-end**.  
+The main code can already call this service and get structured results.  
+Later on, we can add OCR and recognition step by step without breaking the existing APIs.
+
+---
+
+## Limits
+
+- **Max size**: 20 MB per file  
+- **Allowed image types**: `jpg`, `jpeg`, `png`, `webp`  
+- **Allowed file types**: `txt`, `pdf`, `docx`, `xlsx`  
+
+---
+
+## How to run
+
+1. Create a virtual environment  
+   ```bash
+   python3 -m venv .venv
+   source .venv/bin/activate   # macOS/Linux
+   # .venv\Scripts\Activate.ps1  # Windows PowerShell
+
+2.Install dependencies
+```bash
+pip install -r requirements.txt
+
+3.Start the service
+```bash
+uvicorn app.main:app --reload --port 8000
+
+## How to test
+
+1. Check health
+   ```bash
+   curl http://localhost:8000/health
+
+
+2.Upload an image
+```bash
+curl -F "file=@photo.jpg" http://localhost:8000/upload/image
+
+
+3.Upload a file
+```bash
+curl -F "file=@doc.pdf" http://localhost:8000/upload/file
