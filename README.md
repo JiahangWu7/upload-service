@@ -1,10 +1,5 @@
 # Upload Service 
 
-Hi! This is a super simple **upload-only service** I made.  
-It lets you upload **images** or **files** through API calls.  
-Right now it only saves the files — no fancy processing (like OCR or recognition) yet.  
-But later we can add those features step by step.  
-
 ---
 
 ## What This Service Does
