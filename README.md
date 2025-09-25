@@ -47,13 +47,13 @@ Later on, we can add OCR and recognition step by step without breaking the exist
    source .venv/bin/activate   # macOS/Linux
    # .venv\Scripts\Activate.ps1  # Windows PowerShell
 
-2.Install dependencies
-```bash
-pip install -r requirements.txt
+2. Install dependencies
+  ```bash
+  pip install -r requirements.txt
 
-3.Start the service
-```bash
-uvicorn app.main:app --reload --port 8000
+3. Start the service
+  ```bash
+  uvicorn app.main:app --reload --port 8000
 
 ## How to test
 
@@ -62,11 +62,11 @@ uvicorn app.main:app --reload --port 8000
    curl http://localhost:8000/health
 
 
-2.Upload an image
-```bash
-curl -F "file=@photo.jpg" http://localhost:8000/upload/image
+2. Upload an image
+  ```bash
+  curl -F "file=@photo.jpg" http://localhost:8000/upload/image
 
 
-3.Upload a file
-```bash
-curl -F "file=@doc.pdf" http://localhost:8000/upload/file
+3. Upload a file
+  ```bash
+  curl -F "file=@doc.pdf" http://localhost:8000/upload/file
