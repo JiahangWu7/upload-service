@@ -55,6 +55,9 @@ Later on, we can add OCR and recognition step by step without breaking the exist
   ```bash
   uvicorn app.main:app --reload --port 8000
 
+---
+
+## 
 ## How to test
 
 1. Check health
