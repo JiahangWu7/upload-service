@@ -71,10 +71,42 @@ Later on, we can add OCR and recognition step by step without breaking the exist
 2. Upload an image
   ```bash
   curl -F "file=@photo.jpg" http://localhost:8000/upload/image
-  ``` 
-
+  ```
 
 3. Upload a file
   ```bash
   curl -F "file=@doc.pdf" http://localhost:8000/upload/file
-  ``` 
+  ```
+
+## Optional: Test with Streamlit
+
+For easier testing without using curl, you can run a simple Streamlit UI.
+
+1.Install extra dependencies
+```bash
+pip install streamlit requests pillow
+```
+
+2.Run your FastAPI service (in one terminal)
+```bash
+uvicorn app.main:app --reload --port 8000
+```
+
+3.In another terminal, start Streamlit (from the project root)
+```bash
+streamlit run app_streamlit.py
+```
+
+4.Open the page (usually http://localhost:8501
+) and:
+
+* Click Check /health to confirm the service is alive
+
+* Upload an image (→ calls /upload/image)
+
+* Upload a file (→ calls /upload/file)
+
+The JSON response will be shown directly in the page.
+
+
+
